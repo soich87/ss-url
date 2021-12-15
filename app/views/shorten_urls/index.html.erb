@@ -21,7 +21,7 @@
 	      <td><%= short_url.origin_url %></td>
 	      <td>
 	      	<%= link_to 'show', shorten_url_path(short_url) %>
-	      	<%= link_to('delete', shorten_url_path(short_url), method: :delete) %>
+	      	<%= link_to('delete', shorten_url_path(short_url), method: :delete, data: { confirm: "You want to delete this shortened url?"}) %>
 	      </td>
 	    </tr>
     <% end %>

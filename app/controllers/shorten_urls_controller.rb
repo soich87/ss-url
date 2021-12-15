@@ -34,7 +34,7 @@ class ShortenUrlsController < ApplicationController
 
   def destroy
     @shorten_url.destroy
-    redirect_to root_path, notice: 'Record deleted'
+    redirect_to root_path, alert: 'Record deleted'
   end
 
   private

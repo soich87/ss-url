@@ -12,9 +12,21 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <% flash.each do |key, value| %>
+        <div class="alert alert-<%= key %> alert-dismissible" role="alert">
+          <%= value %>
+         </div>
+      <% end %>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <%= link_to 'Root', root_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Api Keys', api_settings_path, class: 'nav-link' %>
+          </li>
           <li class="nav-item">
             <%=
               link_to_if(current_user.nil?, "Login", new_user_session_path, class: 'nav-link') do
@@ -22,13 +34,8 @@
               end
             %>
           </li>
-          <li class="nav-item">
-            <p class="notice"><%= notice %></p>
-            <p class="alert"><%= alert %></p>
-          </li>
       </div>
     </nav>
-    <div class="container">
       <%= yield %>
     </div>
   </body>

@@ -1,0 +1,25 @@
+<%= form_tag('/api_settings') do %>
+  <button type="submit" class="btn btn-primary">Generate Api key</button>
+<% end %>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Api Key</th>
+      <th scope="col">Expired At</th>
+      <th scope="col">Remaining Requests</th>
+    </tr>
+  </thead>
+  <tbody>
+  	<% @api_settings.each do |api_setting| %>
+	    <tr>
+	      <td><%= api_setting.api_key %></td>
+	      <td><%= api_setting.expired_at %></td>
+	      <td><%= api_setting.remaining_requests %></td>
+	      <td>
+	      	<%= link_to 'show', api_setting_path(api_setting) %>
+	      	<%= link_to('delete', api_setting_path(api_setting), method: :delete, data: { confirm: "You want to delete this api key?"}) %>
+	      </td>
+	    </tr>
+    <% end %>
+  </tbody>
+</table>
