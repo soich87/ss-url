@@ -6,6 +6,8 @@ class ShortingService
 		@long_url = long_url
 		@user = user
 		error = nil
+
+		correct_url
 	end
 
 	def execute
@@ -34,6 +36,9 @@ class ShortingService
 			error = 'Url input can be blank'
 			false
 		else
+			uri = URI.parse(@long_url)
+			host = uri && uri.host
+      scheme = uri && uri.scheme
 			true
 		end
 	end
@@ -43,6 +48,15 @@ class ShortingService
 	end
 
 	private
+
+	def correct_url
+		unless @long_url.blank?
+			uri = URI.parse(@long_url)
+			unless uri.kind_of?(URI::HTTP) || uri.kind_of?(URI::HTTPS)
+				@long_url = "https://#{@long_url}"
+			end
+		end
+	end
 
 	def generate_url_code	
 		loop do
