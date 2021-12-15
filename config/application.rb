@@ -18,5 +18,6 @@ module SsUrl
     #
     # config.time_zone = "Central Time (US & Canada)"
     config.eager_load_paths << Rails.root.join("services")
+    ActiveModelSerializers.config.adapter = :json_api
   end
 end

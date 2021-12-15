@@ -1,16 +1,16 @@
 class ShortingService
 
-	attr_reader :error
+	attr_reader :error, :shortened_url
 
 	def initialize(user, long_url)
 		@long_url = long_url
 		@user = user
 		error = nil
-
+		@shortened_url = nil
 		correct_url
 	end
 
-	def execute
+	def execute(create_by = nil)
 		if valid_url?
 			shorten_url = ShortenUrl.new(
 				user_id: @user.id,
@@ -21,7 +21,7 @@ class ShortingService
 			shorten_url.expired_at = set_expired_at
 
 			if shorten_url.save
-				shorten_url.url_code
+				@shortened_url = shorten_url.shortened_url
 			else
 				error = shorten_url.errors.full_messages.first
 			end

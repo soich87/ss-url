@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2021_12_15_043700) do
     t.string "origin_url", null: false
     t.datetime "expired_at"
     t.bigint "user_id"
+    t.integer "api_key_id"
     t.integer "clicked_count", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

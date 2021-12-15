@@ -6,8 +6,8 @@ class AddShortenUrls < ActiveRecord::Migration[6.1]
       t.string :origin_url, null: false
       t.datetime :expired_at
       t.bigint :user_id
+      t.integer :api_key_id
       t.integer :clicked_count, default: 0
-
       t.timestamps
     end
   end

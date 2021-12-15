@@ -8,4 +8,12 @@ Rails.application.routes.draw do
   resources :api_settings, only: [:index, :show, :create, :destroy]
 
   get '/:url_code', to: 'shorten_urls#redirection', as: 'redirection'
+
+  namespace :api do
+    namespace :v1 do
+      resources :shorten_urls, only: [:index, :create]
+    end
+  end
+
+
 end
