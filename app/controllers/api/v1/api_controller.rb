@@ -24,7 +24,7 @@ class Api::V1::ApiController <  ActionController::API
 	  user = User.find_by(email: options['email'])
 	  api_setting = ApiSetting.find_by(api_key: token)
 
-	  if user && api_setting
+	  if user && api_setting && api_setting.user_id == user.id
 	    @current_user = user
 	    @current_api_setting = api_setting
 	  else
