@@ -1,0 +1,29 @@
+<%= form_tag('/shorten_urls') do %>
+  <div class="form-group">
+    <label for="longUrl">Paste the URL to be shortened</label>
+    <input type="url" class="form-control" placeholder="Enter the link here" name='origin_url' required>
+  </div>
+  <br />
+  <button type="submit" class="btn btn-primary">Shorten URL</button>
+<% end %>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Shortened Url</th>
+      <th scope="col">Origin Url</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  	<% @shorten_urls.each do |short_url| %>
+	    <tr>
+	      <td><%= link_to short_url.url_code, redirection_path(short_url.url_code), target: :_blank %></td>
+	      <td><%= short_url.origin_url %></td>
+	      <td>
+	      	<%= link_to 'show', shorten_url_path(short_url) %>
+	      	<%= link_to('delete', shorten_url_path(short_url), method: :delete) %>
+	      </td>
+	    </tr>
+    <% end %>
+  </tbody>
+</table>
